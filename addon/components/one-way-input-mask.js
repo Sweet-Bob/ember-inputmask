@@ -34,7 +34,8 @@ const OneWayInputMask = Component.extend({
    */
   attributeBindings: [
     'type',
-    '_value:value'
+    '_value:value',
+    'autofocus'
   ],
 
   // This is where we blacklist all the attributes that should not be bound
@@ -247,7 +248,7 @@ const OneWayInputMask = Component.extend({
   _setupMask() {
     let mask = get(this, 'mask'), options = get(this, '_options');
     let inputmask = new Inputmask(mask, options);
-    inputmask.mask(this.element);
+    this.set('maskInstance', inputmask.mask(this.element));
 
     // We need to setup a manual event listener for the change event instead of using the Ember
     // Component event methods, because the Inputmask events don't play nice with the Component
